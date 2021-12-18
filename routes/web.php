@@ -70,7 +70,11 @@ Route::get('t/{code}', 'ShareController')->name('short');
 Route::get('s/{hash}/{item_id}', 'DriveController@download')->name('download');
 
 Route::post('drive/preload', 'DriveController@preload')->name('preload');
-Route::get('/', 'DriveController@query')->name('home');
+
+// Route::get('/', 'DriveController@query')->name('home');
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('home', 'DriveController@query')->name('home');
+
 if (setting('single_account_mode', 0)) {
     Route::get('{query?}', 'DriveController@query')->name('drive.query')->where('query', '.*');
 } else {
